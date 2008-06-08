@@ -1,0 +1,15 @@
+TODO:
+  * When invited
+    * join the channel
+    * update logged channels list
+    * say hi
+  * When kicked
+    * update logged channels list
+    * warn subscribers that the channel is not being logged anymore (?)
+  * Log
+  * PM email interface (? feed reader instead?)
+    * subscribe channel[, channel]* email [html]
+    * unsubscribe channel[, channel]
+    * help
+  * Public interface
+    * feed => returns channel feed location
