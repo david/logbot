@@ -47,9 +47,14 @@ module LogBot
 
     def initialize(config_file)
       config = read config_file
+
+      run_as config.delete(:user), config.delete(:group)
+
       logger = MiniBot::Logger.new(config.delete :log_file)
       logger.level = config.delete :log_level
+
       setup_repository config.delete :db_uri
+
       super config
     end
 
