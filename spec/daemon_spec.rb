@@ -97,9 +97,11 @@ describe LogBot::Daemon do
 
     it "should save the channel in the channels list" do
       t = Time.now
+      t.should_receive(:strftime).with("%Y/%m/%d").and_return("duh")
       LogBot::Channel.stub!(:get).and_return(nil)
       LogBot::Channel.should_receive(:create).with(
         :name => "#zeechannel", :topic_message => "m", :topic_author => "a", :topic_created_on => t)
+      Date.should_receive(:parse).with("duh").and_return(t)
 
       lb = daemon
       lb.stub!(:join)
@@ -114,7 +116,7 @@ describe LogBot::Daemon do
     LogBot::Channel.stub!(:all).and_return(channel)
 
     lb = daemon
-    lb.kicked("#zeechannel", "dude")
+    lb.kicked("#zeechannel", "dude", "message!")
   end
 
   it "should read the config file, returning a symbolized hash"
