@@ -1,28 +1,10 @@
 require 'minibot'
 require 'yaml'
 
-module MiniBot
-  class Server
-    alias_method :old_write, :write
-
-    def write(str)
-      puts "> #{str.inspect}"
-      old_write str
-    end
-  end
-end
-
 module LogBot
   class Daemon < MiniBot::Daemon
     def message(channel, nick, msg)
       Event.create :type => :message, :channel => channel, :nick => nick, :content => msg 
-    end
-
-    alias_method :old_disp, :dispatch
-
-    def dispatch(message)
-      puts "< #{message.inspect}"
-      old_disp message
     end
 
     def invited(channel, nick)
@@ -63,6 +45,8 @@ module LogBot
 
     def initialize(config_file)
       config = read config_file
+      logger = MiniBot::Logger.new(config.delete :log_file)
+      logger.level = config.delete :log_level
       setup_repository config.delete :db_uri
       super config
     end
