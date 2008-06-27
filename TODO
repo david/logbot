@@ -1,8 +1,4 @@
 TODO:
-  * When invited
-    * say hi (?)
-  * When kicked
-    * warn subscribers that the channel is not being logged anymore (?)
   * PM email interface (? feed reader instead?)
     * subscribe channel[, channel]* email [html]
     * unsubscribe channel[, channel]
@@ -11,3 +7,4 @@ TODO:
     * feed: returns channel feed location
     * last x: returns the last x messages (in a PM)
     * offtherecord x: stop logging for x minutes
+  * Implement more logging levels: error, notice, none.
