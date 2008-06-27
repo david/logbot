@@ -4,7 +4,7 @@ require 'rubygems'
 require 'daemons'
 require 'logbot'
 
-Daemons.run_proc 'freenode-logger' do
+Daemons.run_proc 'freenode-logger', :dir_mode => :system do
   config_file = ARGV.pop || "/etc/logbot.conf"
 
   unless File.exists?(config_file)
