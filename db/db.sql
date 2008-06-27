@@ -9,7 +9,7 @@ CREATE TABLE channels (
 );
 
 CREATE TABLE events (
-  event_type int not null references types(id),
+  type int not null references types(id),
   channel varchar(32) not null,
   nick varchar(128) not null,
   content varchar(512) null,
