@@ -12,12 +12,14 @@ module LogBot
         join channel
         topic_fields = [:topic_message, :topic_author, :topic_created_on]
         tpic = Hash[ *topic_fields.zip(topic channel).flatten ]
+        tpic[:topic_created_on] = Date.parse(tpic[:topic_created_on].strftime('%Y/%m/%d')) \
+          if tpic[:topic_created_on]
 
         Channel.create({ :name => channel }.merge(tpic).inject({}) { |h, (k, v)| h[k.to_sym] = v; h })
       end
     end
 
-    def kicked(channel, nick)
+    def kicked(channel, nick, message)
       Channel.all(:name => channel).destroy!;
     end
 
