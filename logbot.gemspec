@@ -23,5 +23,5 @@ SPEC = Gem::Specification.new do |s|
   
   s.require_path = 'lib'
   s.autorequire = GEM
-  s.files = %w(LICENSE README Rakefile TODO) + Dir.glob("{lib,specs}/**/*")
+  s.files = %w(LICENSE README Rakefile TODO script/logbot config/logbot.conf.sample) + Dir.glob("{lib,specs}/**/*")
 end

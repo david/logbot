@@ -1,0 +1,16 @@
+#!/usr/bin/env ruby
+
+require 'rubygems'
+require 'daemons'
+require 'logbot'
+
+Daemons.run_proc 'freenode-logger' do
+  config_file = ARGV.pop || "/etc/logbot.conf"
+
+  unless File.exists?(config_file)
+    puts "Config file not found"
+    exit 1
+  end
+
+  LogBot::Daemon.new(config_file).run
+end

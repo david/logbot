@@ -1,0 +1,6 @@
+server:       card.freenode.net
+nick:         bot
+nickserv_pwd: my_pass
+db_uri:       mysql://user:pass@localhost/logbot
+log_file:     /var/log/freenode-logger
+log_level:    debug
